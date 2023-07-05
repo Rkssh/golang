@@ -31,8 +31,8 @@ jobs:
        - name: Docker login
          uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc
          with:
-           username: ${{ DOCKER_USER }}
-           password: ${{DOCKER_PASSWORD }}
+           username: ${{ secrets.DOCKER_USER }}
+           password: ${{ secrets.DOCKER_PASSWORD }}
        - name: Docker Metadata action
          id: meta
          uses: docker/metadata-action@818d4b7b91585d195f67373fd9cb0332e31a7175
