@@ -23,7 +23,10 @@ jobs:
 
     - name: Build
       run: go build main.go
-
+  Docker:
+    name: Docker build and push into Docker Hub
+    runs-on: ubuntu-latest
+    steps:
     - name: GitHub Checkout
       uses: actions/checkout@v3.5.3
     - name: Docker login
