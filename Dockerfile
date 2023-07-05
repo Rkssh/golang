@@ -1,7 +1,6 @@
 FROM golang:alpine
 RUN mkdir /app
-COPY . /app
+COPY main /app
 WORKDIR /app
-RUN go build -o main .
 CMD ["/app/main"]
 EXPOSE 8080
