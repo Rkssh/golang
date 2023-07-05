@@ -23,24 +23,22 @@ jobs:
 
     - name: Build
       run: go build main.go
-  docker:
-     runs-on: ubuntu-latest
-     steps:
-       - name: GitHub Checkout
-         uses: actions/checkout@v3.5.3
-       - name: Docker login
-         uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc
-         with:
+
+    - name: GitHub Checkout
+      uses: actions/checkout@v3.5.3
+    - name: Docker login
+      uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc
+      with:
            username: ${{ secrets.DOCKER_USER }}
            password: ${{ secrets.DOCKER_PASSWORD }}
-       - name: Docker Metadata action
-         id: meta
-         uses: docker/metadata-action@818d4b7b91585d195f67373fd9cb0332e31a7175
-         with:
+    - name: Docker Metadata action
+      id: meta
+      uses: docker/metadata-action@818d4b7b91585d195f67373fd9cb0332e31a7175
+      with:
            images: erdipu/golang_app
-       - name: Docker build and Push Images
-         uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
-         with:
+    - name: Docker build and Push Images
+      uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
+      with:
           context: .
           push: true
           tags: ${{ steps.meta.outputs.tags }}
