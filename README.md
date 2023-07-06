@@ -46,7 +46,7 @@ If you want to customize the application, you can modify the `main.go` file. You
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE)..
 
 ---
 
