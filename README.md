@@ -8,7 +8,7 @@ Before running the application, make sure you have the following dependencies in
 
 - Go (version 1.17 or higher)
 
-## Getting Started
+## Getting Started go project
 
 Follow these steps to run the application manually on your local machine:
 
