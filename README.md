@@ -12,7 +12,7 @@ Before running the application, make sure you have the following dependencies in
 
 Follow these steps to run the application manually on your local machine:
 
-1. Clone the repository to your local machine:
+1. Clone the repository to your local machine: Dipu
 
    ```
    git clone <repository-url>
