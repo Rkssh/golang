@@ -6,7 +6,7 @@ This is a simple Golang application that serves a webpage with a blue background
 
 Before running the application, make sure you have the following dependencies installed on your machine:
 
-- Go (version 1.17 or higher)
+- Go (version 1.17 or higher) yes
 
 ## Getting Started go project
 
