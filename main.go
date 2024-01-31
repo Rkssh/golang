@@ -4,14 +4,30 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
 
-func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		html := `<html><body style='background-color: blue; display: flex; justify-content: center; align-items: center; height: 100vh;'><h1 style='color: white;'>It is working!</h1></body></html>`
-		fmt.Fprintf(w, html)
-	})
+func handler(w http.ResponseWriter, r *http.Request) {
+	html := `<html><body style='background-color: blue; display: flex; justify-content: center; align-items: center; height: 100vh;'><h1 style='color: white;'>It is working!</h1></body></html>`
+	fmt.Fprintf(w, html)
+}
 
-	fmt.Println("Server listening on port 8080...")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+func main() {
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	http.HandleFunc("/", handler)
+
+	logger := log.New(os.Stdout, "devops-as-a-service: ", log.LstdFlags|log.Lshortfile)
+
+	server := &http.Server{
+		Addr:    ":" + port,
+		Handler: http.DefaultServeMux,
+		ErrorLog: logger,
+	}
+
+	fmt.Printf("Server listening on port %s...\n", port)
+	logger.Fatal(server.ListenAndServe())
 }
