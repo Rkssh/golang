@@ -48,75 +48,15 @@ jobs:
       id: increment_version
       run: echo ::set-output name=NEW_VERSION::$((VERSION + 1))
 
-    - name: Tag and Push Docker Image
-      run: |
-        docker tag erdipu/golang_app:latest erdipu/golang_app:${{ steps.get_latest_version.outputs.VERSION }}
-        docker push erdipu/golang_app:${{ steps.get_latest_version.outputs.VERSION }}
-        docker push erdipu/golang_app:latest
-
-        docker tag erdipu/golang_app:latest erdipu/golang_app:${{ steps.increment_version.outputs.NEW_VERSION }}
-        docker push erdipu/golang_app:${{ steps.increment_version.outputs.NEW_VERSION }}
-
-
-# name: Go
-
-# on:
-#   push:
-#     branches: [ "main" ]
-#   pull_request:
-#     branches: [ "main" ]
-
-# jobs:
-
-#   build:
-#     runs-on: ubuntu-latest
-#     steps:
-#     - uses: actions/checkout@v3
-
-#     - name: Set up Go.
-#       uses: actions/setup-go@v3
-#       with:
-#         go-version: 1.19
-
-#     - name: Build
-#       run: go build main.go
-
-#   Docker:
-#     name: Docker build and push into Docker Hub
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: GitHub Checkout
-#       uses: actions/checkout@v3.5.3
-
-#     - name: Docker login
-#       uses: docker/login-action@465a07811f14bebb1938fbed4728c6a1ff8901fc
-#       with:
-#         username: ${{ secrets.DOCKER_USER }}
-#         password: ${{ secrets.DOCKER_PASSWORD }}
-
-#     - name: Docker Metadata action
-#       id: meta
-#       uses: docker/metadata-action@818d4b7b91585d195f67373fd9cb0332e31a7175
-#       with:
-#         images: erdipu/golang_app
-
-#     - name: Get latest version
-#       id: get_latest_version
-#       run: echo ::set-output name=VERSION::$(docker images "erdipu/golang_app" --format "{{.Tag}}" | sort -r | head -n 1)
-
-#     - name: Increment version
-#       id: increment_version
-#       run: echo ::set-output name=NEW_VERSION::$((VERSION + 1))
-
-#     - name: Docker build and Push Images
-#       uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
-#       with:
-#         context: .
-#         push: true
-#         tags: |
-#           erdipu/golang_app:latest
-#           erdipu/golang_app:${{ steps.increment_version.outputs.NEW_VERSION }}
-#         labels: ${{ steps.meta.outputs.labels }}
+    - name: Docker build and Push Images
+      uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
+      with:
+        context: .
+        push: true
+        tags: |
+          erdipu/golang_app:latest
+          erdipu/golang_app:${{ steps.increment_version.outputs.NEW_VERSION }}
+        labels: ${{ steps.meta.outputs.labels }}
 
 
 
