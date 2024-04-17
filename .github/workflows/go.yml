@@ -9,7 +9,7 @@ on:
 jobs:
 
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
 
@@ -23,7 +23,7 @@ jobs:
 
   Docker:
     name: Docker build and push into Docker Hub
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - name: GitHub Checkout
       uses: actions/checkout@v3.5.3
