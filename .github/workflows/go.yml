@@ -9,7 +9,11 @@ on:
 jobs:
 
   build:
-    runs-on: self-hosted
+    strategy:
+      matrix:
+        runner: [self-hosted, ubuntu-latest]
+    runs-on: ${{ matrix.runner }}
+    # runs-on: self-hosted
     steps:
     - uses: actions/checkout@v3
 
