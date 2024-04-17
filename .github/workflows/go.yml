@@ -25,8 +25,8 @@ jobs:
     name: Docker build and push into Docker Hub
     # runs-on: self-hosted
     runs-on: 
-      - ubuntu-latest
       - self-hosted
+      - ubuntu-latest
       # - runner2
     steps:
     - name: GitHub Checkout
